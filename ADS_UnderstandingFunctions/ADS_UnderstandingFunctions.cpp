@@ -14,6 +14,7 @@ struct Bike {
     string name;
     float price;
     bool bStreetBike = true;
+    //remember we can also add methods, just like a class
     //  friend ostream& operator<<(ostream& os, const Bike& bike);
 };
 
