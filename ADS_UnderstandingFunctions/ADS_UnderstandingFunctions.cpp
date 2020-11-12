@@ -150,25 +150,29 @@ private:
   //  string s;
 public:
     string operator()(string str) {
-        return str + "- trimmed";
+        size_t p = str.find_first_not_of(" \t");
+        str.erase(0, p);
+
+        p = str.find_last_not_of(" \t");
+        if (string::npos != p)
+            str.erase(p + 1);
+        return str;
     }
 };
 
 //a functor is normally (params + function) in this case we just have a function BUT we can still use a functor
 class ToLowerCaseFunctor {
+private:
+ //   int exclLo, exclHi; //dont lowercase from 0 - 4
 
 public:
+ //   ToLowerCaseFunctor(int exclLo, int exclHi) : exclLo(exclLo), exclHi(exclHi) {};
+
     string operator()(string str) {
         transform(str.begin(), str.end(), str.begin(), ::tolower);
         return str;
     }
 };
-
-
-
-
-
-
 
 int main()
 {
@@ -228,25 +232,58 @@ int main()
     //mona lisa[635x481], mona lisa[1024x768], mona lisa[1024x768, b&w], beautify(mona lisa)
 
     //instanciate each filter
-    string str = "   Jane@DKIT.ie                   ";
+    string str1 = "   Jane@DKIT.ie                   ";
 
     //add each filter to a list
-    list<function<string(string)>> funcList = {trim, toLowerCase};
+    list<function<string(string)>> funcList1 = {trim, toLowerCase};
 
     //pass the target string and list into a process function
-    string strFinal = processString("   Jane@DKIT.ie   ", funcList);
+    string strFinal1 = processString(str1, funcList1);
 
     //show the output
-    cout << strFinal << endl;
+    cout << strFinal1 << endl;
 
     /***************************** Functors *****************************/
     cout << "Functors..." << endl;
+
+    //instanciate each filter
+    string str2 = "           Steve@DKIT.ie ";
+
+    //add each filter to a list
+    TrimStringFunctor trFunc;
+    ToLowerCaseFunctor tlcFunc;
+   // string s = trFunc("      today is thursday     ");
+
+    list<function<string(string)>> funcList2 = { trFunc, tlcFunc };
+
+    //pass the target string and list into a process function
+    string strFinal2 = processString(str2, funcList2);
+
+    //show the output
+    cout << strFinal2 << endl;
 
 
     /***************************** Lambda Functions *****************************/
     cout << "Lambda Functions..." << endl;
 
 
+    function<string(string)> func1 = [](string str) 
+    {
+        size_t p = str.find_first_not_of(" \t");
+        str.erase(0, p);
+
+        p = str.find_last_not_of(" \t");
+        if (string::npos != p)
+            str.erase(p + 1);
+
+        return str; 
+    };
+
+    //at compile time auto will be replaced with "function<string(string)>"
+    auto func2 = [](string s) { return "Processed: " + s; };
+    list<function<string(string)>> funcList3 = { func1, func2};
+
+    //continue to call code as above...
 }
 
 
