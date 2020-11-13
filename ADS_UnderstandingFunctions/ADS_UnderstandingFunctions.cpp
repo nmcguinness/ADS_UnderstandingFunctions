@@ -93,10 +93,6 @@ float getY(float slope, float yIntercept, float x) {
     return slope * x + yIntercept;
 }
 
-float add(int x, int y) {
-    return x / y;
-}
-
 void displayMessage(string msg) {
     //screen
 }
@@ -174,16 +170,17 @@ public:
     }
 };
 
-int main()
-{
-   /*
-        Four methods to model a function:
+/**
+ * Understanding the four methods to model a function:
         1. Function pointer - old-school, inflexible, efficient, syntactically complex
         2. STL functions
         3. Functors (Object [params, function]
         4. Lambda functions
-    */
-
+ * 
+ * \return 
+ */
+int main()
+{
     //create a list of struct instances    
     list<Bike> bikeList = {
         {"raid", 1099, false },
@@ -217,14 +214,7 @@ int main()
     //call the function using lineFunc
     cout << getY(0.5, 2, 6) << endl;
 
-    //std::binary_function<float(int, int)> mathFunc = add;
-    //mathFunc(45, 50);
-
-    //std::unary_function<void(string)> displayFunc = displayMessage;
-    //displayFunc("Hi screen this is the code!");
-
     cout << endl;
-
 
     ///***************************** List of STL functions *****************************/
     cout << "List of STL functions..." << endl;
