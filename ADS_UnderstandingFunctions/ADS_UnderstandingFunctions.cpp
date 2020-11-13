@@ -184,46 +184,46 @@ int main()
         4. Lambda functions
     */
 
-    ////create a list of struct instances    
-    //list<Bike> bikeList = {
-    //    {"raid", 1099, false },
-    //     {"carrera vengeance", 1319, false },
-    //      {"indur", 360, true }
-    //};
+    //create a list of struct instances    
+    list<Bike> bikeList = {
+        {"raid", 1099, false },
+         {"carrera vengeance", 1319, false },
+          {"indur", 360, true }
+    };
 
-    //print(bikeList, "*********************Halfords***********************");
+    print(bikeList, "*********************Halfords***********************");
 
 
-    ///***************************** Function Pointers *****************************/
-    //cout << "Function Pointers..." << endl;
+    /***************************** Function Pointers *****************************/
+    cout << "Function Pointers..." << endl;
 
-    ////we can instanciate a pointer to the print function using the code below and then call print()
-    //void (*fPtr)(int, Bike) = &printBike_EU;
-    //print(bikeList, fPtr);
+    //we can instanciate a pointer to the print function using the code below and then call print()
+    void (*fPtr)(int, Bike) = &printBike_EU;
+    print(bikeList, fPtr);
 
-    ////or we can just get the address of the printBike_EU function and pass directly into print()
-    //print(bikeList, &printBike_EU);
+    //or we can just get the address of the printBike_EU function and pass directly into print()
+    print(bikeList, &printBike_EU);
 
-    //cout << endl;
+    cout << endl;
 
-    ///***************************** STL functions *****************************/
-    //cout << "STL functions..." << endl;
+    /***************************** STL functions *****************************/
+    cout << "STL functions..." << endl;
 
-    //std::function<void(int, Bike)> myPrintFunc = printBike_US;
-    ////auto myPrintFunc = printBike_US;
-    //print(bikeList, myPrintFunc);
+    std::function<void(int, Bike)> myPrintFunc = printBike_US;
+    //auto myPrintFunc = printBike_US;
+    print(bikeList, myPrintFunc);
 
-    //std::function<float(float, float, float)> lineFunc = getY;
-    ////call the function using lineFunc
-    //cout << getY(0.5, 2, 6) << endl;
+    std::function<float(float, float, float)> lineFunc = getY;
+    //call the function using lineFunc
+    cout << getY(0.5, 2, 6) << endl;
 
-    ////std::binary_function<float(int, int)> mathFunc = add;
-    ////mathFunc(45, 50);
+    //std::binary_function<float(int, int)> mathFunc = add;
+    //mathFunc(45, 50);
 
-    ////std::unary_function<void(string)> displayFunc = displayMessage;
-    ////displayFunc("Hi screen this is the code!");
+    //std::unary_function<void(string)> displayFunc = displayMessage;
+    //displayFunc("Hi screen this is the code!");
 
-    //cout << endl;
+    cout << endl;
 
 
     ///***************************** List of STL functions *****************************/
